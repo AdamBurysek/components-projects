@@ -22,6 +22,8 @@ const SwiperVegas = () => {
   const progressLine: React.MutableRefObject<HTMLSpanElement | null> =
     useRef(null);
 
+  const time: number = 5;
+
   const images = [
     { image: "ben-wicks-Dtm9FK50sIU-unsplash.jpg" },
     { image: "david-becker-eGzx9xud4QQ-unsplash.jpg" },
@@ -57,7 +59,7 @@ const SwiperVegas = () => {
         speed={1900}
         allowTouchMove={false}
         autoplay={{
-          delay: 5000,
+          delay: time * 1000,
           disableOnInteraction: false,
           waitForTransition: false,
         }}
@@ -70,9 +72,11 @@ const SwiperVegas = () => {
           <SwiperSlide key={slide.image} className={styles.swiperSlide}>
             <span className={styles.swiperOverlay}></span>
             <motion.div
-              animate={{ scale: 1, x: 0 }}
-              initial={{ scale: 1.1, x: 20 }}
-              transition={{ duration: 5, repeat: Infinity }}
+              animate={{ scale: 1.4, x: -100 }}
+              transition={{
+                duration: time,
+                repeat: Infinity,
+              }}
               className={styles.swiperSlideContainer}
             >
               <Image
