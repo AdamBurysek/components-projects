@@ -1,33 +1,46 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --max-content-width: 1260px;
+
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+
+  --color-black: #000;
+  --color-white: #fff;
+  --color-grey: #909090;
+  --color-background-dark: #1d1d1d;
+  --color-background-light: #e4e4e4;
+  --color-primary: #6645bf;
+  --color-secondary: #ffb100;
+  --color-chordprinter: #3a3742;
+
+  --fs-page-title: clamp(3rem, 1.25rem + 8vw, 7.5rem);
+  --fs-title-info: clamp(0.875rem, 0.3rem + 2vw, 1.6rem);
+  --fs-subtitle: clamp(1rem, 0.5rem + 1.8vw, 1.5rem);
+  --fs-section-title: clamp(1.5rem, 1rem + 2.5vw, 3rem);
+  --fs-content-title: clamp(1.25rem, 0.852rem + 1.989vw, 2rem);
+  --fs-text-small: 1rem;
+  --fs-text-medium: 1.2rem;
+  --fs-text-large: 1.4rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+*,
+:before,
+:after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  width: 100%;
+  height: 100dvh;
+  min-width: 320px;
+  overflow-x: hidden;
+  color: rgb(var(--color-grey));
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    to right,
+    var(--color-grey) -250%,
+    rgb(255, 255, 255) 100%
+  );
 }

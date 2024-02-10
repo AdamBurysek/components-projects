@@ -1,0 +1,31 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.contentContainer {
+  width: 100%;
+  max-width: var(--max-content-width);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px;
+  gap: 30px;
+}
+
+.button {
+  width: 200px;
+  height: 50px;
+  background-color: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 0 7px -2px var(--color-black);
+}
+
+.button:hover {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
