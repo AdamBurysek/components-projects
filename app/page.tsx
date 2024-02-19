@@ -11,8 +11,8 @@ export default function Home() {
         <Link href="./swiper-vegas">
           <button className={styles.button}>Swiper Vegas </button>
         </Link>
-        <Link href="./slideshow-vegas">
-          <button className={styles.button}>Slideshow Vegas </button>
+        <Link href="./gradient-box">
+          <button className={styles.button}>Gradient line Box</button>
         </Link>
       </div>
     </div>

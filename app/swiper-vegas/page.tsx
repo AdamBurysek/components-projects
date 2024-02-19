@@ -1,39 +1,89 @@
 "use client";
 
-import React, { useRef } from "react";
-// Import Swiper React components
+import React, { useEffect, useRef, useState } from "react";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion";
 import type { SwiperClass } from "swiper/react";
+import type { SwiperRef } from "swiper/react";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import styles from "./page.module.css";
 
-// import required modules
-import { Autoplay, Pagination, Navigation, EffectFade } from "swiper/modules";
+import { Autoplay, EffectFade } from "swiper/modules";
 import Image from "next/image";
 
+type Images = {
+  image: string;
+  initialScale?: number;
+  targetScale?: number;
+  initialX?: number | string;
+  targetX?: number | string;
+  initialY?: number | string;
+  targetY?: number | string;
+  freezeTime?: number;
+};
+
 const SwiperVegas = () => {
-  const swiperRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState<number>(-1);
+  const [refresh, setRefresh] = useState<boolean>(false);
+  const swiperRef = useRef<SwiperRef>(null);
   const progressLine: React.MutableRefObject<HTMLSpanElement | null> =
     useRef(null);
 
   const time: number = 5;
 
-  const images = [
-    { image: "ben-wicks-Dtm9FK50sIU-unsplash.jpg" },
-    { image: "david-becker-eGzx9xud4QQ-unsplash.jpg" },
-    { image: "fabien-bellanger-Qs1ql9tMIp0-unsplash.jpg" },
-    { image: "michelle-mcewen-xbsDD5zkWY4-unsplash.jpg" },
-    { image: "neom-El92hmAt91o-unsplash.jpg" },
-    { image: "neom-I5j46lqAo-o-unsplash.jpg" },
-    { image: "ryan-klaus-IncXhM8rKSc-unsplash.jpg" },
-    { image: "simon-wilkes-S297j2CsdlM-unsplash.jpg" },
+  const images: Images[] = [
+    {
+      image: "ben-wicks-Dtm9FK50sIU-unsplash.jpg",
+      targetScale: 1.5,
+    },
+    {
+      image: "sylvain-mauroux-8DObAiJVkrc-unsplash.jpg",
+      targetScale: 1.3,
+      targetX: "-10%",
+      targetY: "10%",
+    },
+    {
+      image: "fabien-bellanger-Qs1ql9tMIp0-unsplash.jpg",
+      targetScale: 1.5,
+    },
+    {
+      image: "michelle-mcewen-xbsDD5zkWY4-unsplash.jpg",
+      targetScale: 1.5,
+    },
+    {
+      image: "neom-El92hmAt91o-unsplash.jpg",
+      targetScale: 1.5,
+    },
+    {
+      image: "neom-I5j46lqAo-o-unsplash.jpg",
+      targetScale: 1.5,
+    },
+    {
+      image: "ryan-klaus-IncXhM8rKSc-unsplash.jpg",
+      targetScale: 1.5,
+    },
+    {
+      image: "simon-wilkes-S297j2CsdlM-unsplash.jpg",
+      targetScale: 1.5,
+    },
   ];
+
+  useEffect(() => {
+    const getActiveIndex = () => {
+      if (activeIndex >= images.length - 1) {
+        setActiveIndex(0);
+      } else {
+        setActiveIndex(activeIndex + 1);
+      }
+    };
+    getActiveIndex();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [refresh]);
 
   const onAutoplayTimeLeft = (
     swiper: SwiperClass,
@@ -67,15 +117,27 @@ const SwiperVegas = () => {
         modules={[Autoplay, EffectFade]}
         onAutoplayTimeLeft={onAutoplayTimeLeft}
         className={styles.swiper}
+        onSlideChange={() => setRefresh(!refresh)}
       >
-        {images.map((slide) => (
-          <SwiperSlide key={slide.image} className={styles.swiperSlide}>
+        {images.map((slide: Images, index) => (
+          <SwiperSlide key={index} className={styles.swiperSlide}>
             <span className={styles.swiperOverlay}></span>
             <motion.div
-              animate={{ scale: 1.4, x: -100 }}
+              animate={activeIndex === index ? "initial" : "animate"}
               transition={{
-                duration: time,
-                repeat: Infinity,
+                duration: time - (slide.freezeTime || 0),
+              }}
+              variants={{
+                initial: {
+                  scale: slide.initialScale || 1,
+                  x: slide.initialX || 0,
+                  y: slide.initialY || 0,
+                },
+                animate: {
+                  scale: slide.targetScale || 1,
+                  x: slide.targetX || 0,
+                  y: slide.targetY || 0,
+                },
               }}
               className={styles.swiperSlideContainer}
             >
@@ -96,6 +158,8 @@ const SwiperVegas = () => {
           <span className={styles.autoplayLine} ref={progressLine}></span>
         </div>
       </Swiper>
+
+      <div style={{ width: "100%", height: 5000 }}></div>
     </>
   );
 };

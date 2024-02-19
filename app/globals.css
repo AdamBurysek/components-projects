@@ -38,9 +38,5 @@ body {
   min-width: 320px;
   overflow-x: hidden;
   color: rgb(var(--color-grey));
-  background: linear-gradient(
-    to right,
-    var(--color-grey) -250%,
-    rgb(255, 255, 255) 100%
-  );
+  background: rgb(3, 1, 27);
 }
