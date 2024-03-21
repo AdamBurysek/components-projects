@@ -15,17 +15,8 @@ import styles from "./page.module.css";
 
 import { Autoplay, EffectFade } from "swiper/modules";
 import Image from "next/image";
-
-type Images = {
-  image: string;
-  initialScale?: number;
-  targetScale?: number;
-  initialX?: number | string;
-  targetX?: number | string;
-  initialY?: number | string;
-  targetY?: number | string;
-  freezeTime?: number;
-};
+import { images } from "./images";
+import type { Images } from "./images";
 
 const SwiperVegas = () => {
   const [activeIndex, setActiveIndex] = useState<number>(-1);
@@ -35,43 +26,6 @@ const SwiperVegas = () => {
     useRef(null);
 
   const time: number = 5;
-
-  const images: Images[] = [
-    {
-      image: "ben-wicks-Dtm9FK50sIU-unsplash.jpg",
-      targetScale: 1.5,
-    },
-    {
-      image: "sylvain-mauroux-8DObAiJVkrc-unsplash.jpg",
-      targetScale: 1.3,
-      targetX: "-10%",
-      targetY: "10%",
-    },
-    {
-      image: "fabien-bellanger-Qs1ql9tMIp0-unsplash.jpg",
-      targetScale: 1.5,
-    },
-    {
-      image: "michelle-mcewen-xbsDD5zkWY4-unsplash.jpg",
-      targetScale: 1.5,
-    },
-    {
-      image: "neom-El92hmAt91o-unsplash.jpg",
-      targetScale: 1.5,
-    },
-    {
-      image: "neom-I5j46lqAo-o-unsplash.jpg",
-      targetScale: 1.5,
-    },
-    {
-      image: "ryan-klaus-IncXhM8rKSc-unsplash.jpg",
-      targetScale: 1.5,
-    },
-    {
-      image: "simon-wilkes-S297j2CsdlM-unsplash.jpg",
-      targetScale: 1.5,
-    },
-  ];
 
   useEffect(() => {
     const getActiveIndex = () => {
