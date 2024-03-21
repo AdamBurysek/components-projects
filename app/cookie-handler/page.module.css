@@ -1,0 +1,101 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  background: url("/slideshow-images/neom-I5j46lqAo-o-unsplash.jpg") no-repeat
+    center center / cover;
+}
+
+.cookieButton {
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  scale: 0.8;
+}
+
+.cookieButton:hover rect {
+  fill: white;
+  transition: 0.5s;
+}
+
+.cookieContainer {
+  position: fixed;
+  width: 0px;
+  min-height: 100svh;
+  background: white;
+  overflow: hidden;
+  transition: 1s;
+  opacity: 0;
+}
+
+.contentContainer {
+  width: 480px;
+  min-height: 100svh;
+}
+
+.open {
+  width: 480px;
+  opacity: 1;
+}
+
+@media screen and (max-width: 480px) {
+  .open,
+  .contentContainer {
+    width: 100vw;
+  }
+}
+
+.closeButton {
+  position: relative;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+}
+
+.closeButton:before,
+.closeButton:after {
+  position: absolute;
+  content: "";
+  height: 4px;
+  width: inherit;
+  background: black;
+  right: 0;
+  top: 12px;
+}
+
+.closeButton:before {
+  rotate: 45deg;
+}
+.closeButton:after {
+  rotate: -45deg;
+}
+
+.closeButton:hover::before,
+.closeButton:hover::after {
+  background: rgb(152, 0, 0);
+}
+
+.topCookieContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.textCookieContainer {
+  margin: 10px;
+}
+
+.preferencesContainer {
+  margin: 20px;
+}
+
+.preferencesTitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-align: center;
+}

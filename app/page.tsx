@@ -14,6 +14,9 @@ export default function Home() {
         <Link href="./gradient-box">
           <button className={styles.button}>Gradient line Box</button>
         </Link>
+        <Link href="./cookie-handler">
+          <button className={styles.button}>Cookie Handler</button>
+        </Link>
       </div>
     </div>
   );
